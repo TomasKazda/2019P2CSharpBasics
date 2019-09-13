@@ -2,40 +2,42 @@
 
 namespace Grading
 {
-    class Person
+    class Grade
     {
-        public int Age;
-        public double Weight = 66;
-        public string Gendre;
+        public string Subject;
+        public double Score;
     }
 
     class Program
     {
         static void Main(string[] args)
         {
-            //Person man1 = new Person() { Age = 30, Gendre = "M", Weight = 82 };
+            Grade[] grades = new Grade[20];
+            grades[0] = new Grade() { Subject = "MAT", Score = 1 };
+            grades[1] = new Grade() { Subject = "CJL", Score = 4 };
+            grades[2] = new Grade() { Subject = "PRG", Score = 1 };
+            grades[3] = new Grade() { Subject = "MAT", Score = 2 };
+            grades[4] = new Grade() { Subject = "CJL", Score = 5 };
+            grades[5] = new Grade() { Subject = "CJL", Score = 3 };
+            grades[6] = new Grade() { Subject = "PRG", Score = 1 };
+            grades[7] = new Grade() { Subject = "MAT", Score = 2 };
+            grades[8] = new Grade() { Subject = "MAT", Score = 2 };
 
-            Person[] people = new Person[10];
-
-            int i = 1;
             ConsoleKeyInfo result;
             do
             {
-                int agetemp;
-                string gendretemp;
-                Console.Write("{0}. člověk - věk: ", i);
-                int.TryParse(Console.ReadLine(), out agetemp);
-                Console.Write("{0}. člověk - pohlaví: ", i);
-                gendretemp = Console.ReadLine();
-
-                people[i - 1] = new Person() { Age = agetemp, Gendre = gendretemp };
-                i += 1;
-
+                int grade;
+                string temp;
+                Console.Write("Předmět: ");
+                temp = Console.ReadLine();
+                Console.Write("Známka: ");
+                int.TryParse(Console.ReadLine(), out grade);
+                
                 Console.WriteLine("Chceš vložit dalšího? [A]: ");
                 result = Console.ReadKey();
                 Console.WriteLine();
 
-            } while (result.Key == ConsoleKey.A);
+            } while (result.Key == ConsoleKey.A || result.Key == ConsoleKey.Enter);
 
             Console.ReadKey();
         }

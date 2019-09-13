@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01syntax", "01syntax\01syntax.csproj", "{7985FFF4-31CF-48C3-8ACA-4253BCFDEB4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02Grading", "Grading\02Grading.csproj", "{88B16672-7985-463B-BDF0-90DE5B2B69CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02Grading", "Grading\02Grading.csproj", "{88B16672-7985-463B-BDF0-90DE5B2B69CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02PeopleArray", "02PeopleArray\02PeopleArray.csproj", "{6A4D609F-6A8F-4F59-941D-F1B195427E0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{88B16672-7985-463B-BDF0-90DE5B2B69CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88B16672-7985-463B-BDF0-90DE5B2B69CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88B16672-7985-463B-BDF0-90DE5B2B69CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A4D609F-6A8F-4F59-941D-F1B195427E0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A4D609F-6A8F-4F59-941D-F1B195427E0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A4D609F-6A8F-4F59-941D-F1B195427E0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A4D609F-6A8F-4F59-941D-F1B195427E0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
