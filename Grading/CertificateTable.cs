@@ -7,7 +7,6 @@ namespace Grading
     class CertificateTable
     {
         const int MAXCNT = 2;
-        //        GradeAvg[] _gradeTable = new GradeAvg[MAXCNT];
         GradeAvgList _gradeTable = new GradeAvgList(MAXCNT);
 
         public void AddGrade(Grade grade)
@@ -18,9 +17,9 @@ namespace Grading
         public override string ToString()
         {
             string outstr = "";
-            for (int i = 0; i < _count; i++)
+            foreach (var gradeAvg in _gradeTable.GetAll())
             {
-                outstr += _gradeTable[i] + Environment.NewLine;
+                outstr += gradeAvg + Environment.NewLine;
             }
             return outstr;
         }

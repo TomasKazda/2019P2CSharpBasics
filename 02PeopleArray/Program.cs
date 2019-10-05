@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace _02PeopleArray
+namespace PeopleArray
 {
     class Person
     {
