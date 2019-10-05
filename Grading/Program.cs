@@ -20,21 +20,22 @@ namespace Grading
             grades[7] = new Grade() { Subject = "MAT", Score = 2 };
             grades[8] = new Grade() { Subject = "MAT", Score = 2 };
 
-            //ConsoleKeyInfo result;
-            //do
-            //{
-            //    int grade;
-            //    string temp;
-            //    Console.Write("Předmět: ");
-            //    temp = Console.ReadLine();
-            //    Console.Write("Známka: ");
-            //    int.TryParse(Console.ReadLine(), out grade);
+            ConsoleKeyInfo result;
+            do
+            {
+                int grade;
+                string temp;
+                Console.Write("Předmět: ");
+                temp = Console.ReadLine();
+                Console.Write("Známka: ");
+                int.TryParse(Console.ReadLine(), out grade);
+                if (temp.Length == 3 && grade < 6 && grade > 0) table.AddGrade(new Grade() { Score = grade, Subject = temp });
+                
+                Console.WriteLine("Chceš vložit dalšího? [A]: ");
+                result = Console.ReadKey();
+                Console.WriteLine();
 
-            //    Console.WriteLine("Chceš vložit dalšího? [A]: ");
-            //    result = Console.ReadKey();
-            //    Console.WriteLine();
-
-            //} while (result.Key == ConsoleKey.A || result.Key == ConsoleKey.Enter);
+            } while (result.Key == ConsoleKey.A || result.Key == ConsoleKey.Enter);
 
             foreach (var grade in grades)
             {
