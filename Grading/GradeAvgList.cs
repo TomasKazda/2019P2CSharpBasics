@@ -40,7 +40,7 @@ namespace Grading
             // 1)  zjistíme, zda předmět je již v _gt (a získáme index)
             // 2)  pokud ne, vytvoříme nový pomocí Add(GradeAvg) (a získáme index)
             // 3)  přes Get() získáme referenci na souhrnnou známku a aktualizujeme ji pomocí "g"
-            throw new NotImplementedException();
+            Add(new GradeAvg(g.Subject) { Count = 1, Score = g.Score });
         }
 
         /// <summary>
@@ -48,10 +48,22 @@ namespace Grading
         /// </summary>
         /// <param name="g">souhrnná známka</param>
         /// <returns>index nově vložené známky</returns>
-        private int Add(GradeAvg g)
+        public int Add(GradeAvg g)
         {
             //přidáváme nový GradeAvg a případně předtím zvětšíme pole: ResizeArray(ref _gt, maxcnt)
-            throw new NotImplementedException();
+            int idx = IndexOf(g);
+            if (idx == -1)
+            {
+                idx = Count;
+                if (idx == Length) ResizeArray(ref _gt, maxcnt);
+                _gt[idx] = g;
+            } else
+            {
+                _gt[idx].Count += g.Count;
+                _gt[idx].Score += g.Score;
+            }
+
+            return idx;
         }
 
         public bool Delete(GradeAvg g)
