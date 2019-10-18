@@ -29,7 +29,7 @@ namespace Grading
 
         public override string ToString()
         {
-            return Subject + ": " + Math.Round(GetAverage(), 1);
+            return Subject + ": " + Math.Round(GetAverage(), 1) + " (" + Count + ")";
         }
     }
 }
