@@ -8,5 +8,11 @@ namespace Grading
     {
         public string Subject;
         public double Score;
+
+        public override string ToString()
+        {
+            return $"{Subject} = {Score}";
+        }
     }
+
 }
