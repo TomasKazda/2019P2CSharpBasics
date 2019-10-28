@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ArrayUnlimited
+﻿namespace ArrayUnlimited
 {
     interface IDynamicArray
     {
         object Get(int position);
+        object[] GetAll();
+        void Add(object value);
         void Insert(object value, int position);
-        void ShiftItems(int idexFrom);
+        void ShiftItems(int indexFrom);
         int Count { get; }
         int Length { get; }
     }
