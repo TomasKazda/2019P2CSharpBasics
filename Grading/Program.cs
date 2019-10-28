@@ -10,10 +10,13 @@ namespace Grading
         {
             CertificateTable table = new CertificateTable();
 
-            Display display1 = new Display(y: 10, x: 20, width: 30);
+            Display display1 = new Display(y: 3, x: 1);
             Grade grade = new Grade() { Subject = "MAT", Score = 1 };
 
+            display1.AddItem(new LabelItem("-- Vysvědčení --"));
             display1.AddItem(new LabelItem("Hodnocení", grade));
+            display1.AddItem(new LabelItem("Popisek", "hodnota je zde"));
+
             display1.Refresh();
 
             Console.ReadKey();
