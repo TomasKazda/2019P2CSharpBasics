@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ArrayUnlimited
 {
-    class UnlimitedArray : IDynamicArray, IEnumerable
+    public class UnlimitedArray : IDynamicArray, IEnumerable
     {
         private object[] _array;
         private const int GROW = 1;

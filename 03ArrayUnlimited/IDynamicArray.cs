@@ -1,6 +1,6 @@
 ﻿namespace ArrayUnlimited
 {
-    interface IDynamicArray
+    public interface IDynamicArray
     {
         object Get(int position);
         object[] GetAll();
