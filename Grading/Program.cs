@@ -13,13 +13,13 @@ namespace Grading
             Display displayGrading = new Display(new Proportion() { Width = 40, TopLeft = new System.Drawing.Point(20, 3) });
             displayGrading.AddItem(new LabelItem("-- Vysvědčení --"));
             displayGrading.AddItem(new LabelItem(""));
-            Display displayInput = new Display(new Proportion() { Width = 30, TopLeft = new System.Drawing.Point(25, 3) });
+            Display displayInput = new Display(new Proportion() { Width = 30, TopLeft = new System.Drawing.Point(3, 3) });
             displayInput.AddItem(new LabelItem("---- zadávání předmětu ----"));
             displayInput.AddItem(new LabelItem("Předmět", ""));
-            Display displayInput2 = new Display(new Proportion() { Width = 30, TopLeft = new System.Drawing.Point(25, 10) });
+            Display displayInput2 = new Display(new Proportion() { Width = 30, TopLeft = new System.Drawing.Point(38, 3) });
             displayInput2.AddItem(new LabelItem("---- zadávání známky ----"));
             displayInput2.AddItem(new LabelItem("Známka", ""));
-            Display displayConfirm = new Display(new Proportion() { Width = 30, TopLeft = new System.Drawing.Point(25, 18) });
+            Display displayConfirm = new Display(new Proportion() { Width = 30, TopLeft = new System.Drawing.Point(25, 12) });
             displayConfirm.AddItem(new LabelItem("Chceš vložit dalšího? [A]", ""));
 
             Grade[] grades = new Grade[9];
