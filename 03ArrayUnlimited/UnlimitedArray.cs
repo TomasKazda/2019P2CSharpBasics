@@ -57,7 +57,7 @@ namespace ArrayUnlimited
 
         public object Get(int position)
         {
-            if (position < 0 || position >= Length) return null;
+            //if (position < 0 || position >= Length) return null; efficiency issue
             return _array[position];
         }
 
@@ -115,5 +115,27 @@ namespace ArrayUnlimited
             _array[indexFrom] = null;
         }
 
+        public bool Delete(object value)
+        {
+            bool result = false;
+
+            for (int i = 0; i < _array.Length; i++)
+            {
+                if (_array[i].Equals(value))
+                {
+                    result = true;
+                    _array[i] = null;
+                }
+            }
+
+            return result;
+        }
+
+        public void Delete(int position)
+        {
+            if (position < 0 || position >= Length) return;
+
+            _array[position] = null;
+        }
     }
 }
