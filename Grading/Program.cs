@@ -10,53 +10,59 @@ namespace Grading
         {
             CertificateTable table = new CertificateTable();
 
-            Display display1 = new Display(y: 3, x: 1);
-            Grade grade = new Grade() { Subject = "MAT", Score = 1 };
+            Display displayGrading = new Display(new Proportion() { Width = 40, TopLeft = new System.Drawing.Point(20, 3) });
+            displayGrading.AddItem(new LabelItem("-- Vysvědčení --"));
+            displayGrading.AddItem(new LabelItem(""));
+            Display displayInput = new Display(new Proportion() { Width = 30, TopLeft = new System.Drawing.Point(25, 3) });
+            displayInput.AddItem(new LabelItem("---- zadávání předmětu ----"));
+            displayInput.AddItem(new LabelItem("Předmět", ""));
+            Display displayInput2 = new Display(new Proportion() { Width = 30, TopLeft = new System.Drawing.Point(25, 10) });
+            displayInput2.AddItem(new LabelItem("---- zadávání známky ----"));
+            displayInput2.AddItem(new LabelItem("Známka", ""));
+            Display displayConfirm = new Display(new Proportion() { Width = 30, TopLeft = new System.Drawing.Point(25, 18) });
+            displayConfirm.AddItem(new LabelItem("Chceš vložit dalšího? [A]", ""));
 
-            display1.AddItem(new LabelItem("-- Vysvědčení --"));
-            display1.AddItem(new LabelItem("Hodnocení", grade));
-            display1.AddItem(new LabelItem("Popisek", "hodnota je zde"));
+            Grade[] grades = new Grade[9];
+            grades[0] = new Grade() { Subject = "MAT", Score = 1 };
+            grades[1] = new Grade() { Subject = "CJL", Score = 4 };
+            grades[2] = new Grade() { Subject = "PRG", Score = 1 };
+            grades[3] = new Grade() { Subject = "MAT", Score = 2 };
+            grades[4] = new Grade() { Subject = "CJL", Score = 5 };
+            grades[5] = new Grade() { Subject = "CJL", Score = 3 };
+            grades[6] = new Grade() { Subject = "PRG", Score = 1 };
+            grades[7] = new Grade() { Subject = "MAT", Score = 2 };
+            grades[8] = new Grade() { Subject = "MAT", Score = 2 };
 
-            display1.Refresh();
+            ConsoleKeyInfo result;
+            do
+            {
+                int grade;
+                string temp;
+                displayInput.Refresh();
+                temp = Console.ReadLine();
+                displayInput2.Refresh();
+                int.TryParse(Console.ReadLine(), out grade);
+                if (temp.Length == 3 && grade < 6 && grade > 0) table.AddGrade(new Grade() { Score = grade, Subject = temp });
 
-            Console.ReadKey();
+                displayConfirm.Refresh();
+                result = Console.ReadKey();
+                Console.Clear();
 
-            grade.Score = 5;
-            display1.Refresh();
+            } while (result.Key == ConsoleKey.A || result.Key == ConsoleKey.Enter);
 
-            //Grade[] grades = new Grade[9];
-            //grades[0] = new Grade() { Subject = "MAT", Score = 1 };
-            //grades[1] = new Grade() { Subject = "CJL", Score = 4 };
-            //grades[2] = new Grade() { Subject = "PRG", Score = 1 };
-            //grades[3] = new Grade() { Subject = "MAT", Score = 2 };
-            //grades[4] = new Grade() { Subject = "CJL", Score = 5 };
-            //grades[5] = new Grade() { Subject = "CJL", Score = 3 };
-            //grades[6] = new Grade() { Subject = "PRG", Score = 1 };
-            //grades[7] = new Grade() { Subject = "MAT", Score = 2 };
-            //grades[8] = new Grade() { Subject = "MAT", Score = 2 };
+            foreach (var grade in grades)
+            {
+                GradeAvg ga = table.AddGrade(grade);
+            }
 
-            //ConsoleKeyInfo result;
-            //do
-            //{
-            //    int grade;
-            //    string temp;
-            //    Console.Write("Předmět: ");
-            //    temp = Console.ReadLine();
-            //    Console.Write("Známka: ");
-            //    int.TryParse(Console.ReadLine(), out grade);
-            //    if (temp.Length == 3 && grade < 6 && grade > 0) table.AddGrade(new Grade() { Score = grade, Subject = temp });
+            foreach (var item in table.GetAllGrades())
+            {
+                displayGrading.AddItem(new LabelItem(item.Subject, item.GetAverage()));
+            }
 
-            //    Console.WriteLine("Chceš vložit dalšího? [A]: ");
-            //    result = Console.ReadKey();
-            //    Console.WriteLine();
+            Console.Clear();
+            displayGrading.Refresh();
 
-            //} while (result.Key == ConsoleKey.A || result.Key == ConsoleKey.Enter);
-
-            //foreach (var grade in grades)
-            //{
-            //    table.AddGrade(grade);
-            //}
-            //Console.WriteLine(table);
 
             Console.ReadKey();
         }

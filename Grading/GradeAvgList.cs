@@ -35,12 +35,12 @@ namespace Grading
         ///   Metoda přidá novou známku do souhrnu známek
         /// </summary>
         /// <param name="g">známka</param>
-        public void Add(Grade g)
+        public GradeAvg Add(Grade g)
         {
             // 1)  zjistíme, zda předmět je již v _gt (a získáme index)
             // 2)  pokud ne, vytvoříme nový pomocí Add(GradeAvg) (a získáme index)
             // 3)  přes Get() získáme referenci na souhrnnou známku a aktualizujeme ji pomocí "g"
-            Add(new GradeAvg(g.Subject) { Count = 1, Score = g.Score });
+            return Get(Add(new GradeAvg(g.Subject) { Count = 1, Score = g.Score }));
         }
 
         /// <summary>
@@ -78,12 +78,7 @@ namespace Grading
 
         public GradeAvg Get(int position)
         {
-            throw new NotImplementedException();
-        }
-
-        public bool Insert(GradeAvg g, int position)
-        {
-            throw new NotImplementedException();
+            return _gt[position];
         }
 
         public GradeAvg[] GetAll()

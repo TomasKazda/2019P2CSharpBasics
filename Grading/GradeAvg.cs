@@ -15,7 +15,7 @@ namespace Grading
 
         public double GetAverage()
         {
-            return Score / Count;
+            return Math.Round(Score / Count, 1);
         }
 
         public bool AddGrade(Grade grade)
@@ -29,7 +29,7 @@ namespace Grading
 
         public override string ToString()
         {
-            return Subject + ": " + Math.Round(GetAverage(), 1) + " (" + Count + ")";
+            return Subject + ": " + GetAverage() + " (" + Count + ")";
         }
     }
 }

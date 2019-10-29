@@ -6,9 +6,8 @@ namespace Grading
 {
     interface ICustomList
     {
-        void Add(Grade g);
+        GradeAvg Add(Grade g);
         int Add(GradeAvg g);
-        bool Insert(GradeAvg g, int position);
         bool Delete(GradeAvg g);
         bool Delete(int position);
         GradeAvg Get(int position);

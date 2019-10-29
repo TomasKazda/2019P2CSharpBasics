@@ -9,11 +9,13 @@ namespace Grading
         const int MAXCNT = 2;
         GradeAvgList _gradeTable = new GradeAvgList(MAXCNT);
 
-        public void AddGrade(Grade grade)
+        public GradeAvg AddGrade(Grade grade)
         {
-            _gradeTable.Add(grade);
+            return _gradeTable.Add(grade);
         }
-       
+
+        public GradeAvg[] GetAllGrades() => _gradeTable.GetAll();
+
         public override string ToString()
         {
             string outstr = "";
