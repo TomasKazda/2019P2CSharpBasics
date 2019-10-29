@@ -6,6 +6,8 @@ namespace DisplayHelper
     public class Display
     {
         private UnlimitedArray _array;
+        const int PADDING = 1;
+        const int BORDER = 1;
         public Proportion Proportion { get; private set; }
 
         public Display(int x = 0, int y = 0): this(new Proportion() { Height = 5, Width = 4, TopLeft = new System.Drawing.Point(x, y) }) { }
@@ -19,14 +21,14 @@ namespace DisplayHelper
         public void AddItem(LabelItem item)
         {
             _array.Add(item);
-            if (Proportion.Width - 4 < item.ToString().Length)
+            if (Proportion.Width - 2*(PADDING + BORDER) < item.ToString().Length)
             {
-                Proportion.Width = item.ToString().Length + 4;
+                Proportion.Width = item.ToString().Length + 2 * (PADDING + BORDER);
             }
 
-            if (Proportion.Height - 4 < _array.Count)
+            if (Proportion.Height - 2 * (PADDING + BORDER) < _array.Count)
             {
-                Proportion.Height = _array.Count + 4;
+                Proportion.Height = _array.Count + 2 * (PADDING + BORDER);
             }
         }
 
@@ -37,7 +39,7 @@ namespace DisplayHelper
             object[] data = _array.GetAll();
             for (int y = 0; y < data.Length; y++)
             {
-                Console.SetCursorPosition(Proportion.TopLeft.X + 2, Proportion.TopLeft.Y + y + 2);
+                Console.SetCursorPosition(Proportion.TopLeft.X + (PADDING + BORDER), Proportion.TopLeft.Y + y + (PADDING + BORDER));
                 Console.Write(data[y]);
             }
         }
@@ -46,20 +48,20 @@ namespace DisplayHelper
         {
             Console.SetCursorPosition(Proportion.TopLeft.X, Proportion.TopLeft.Y);
             Console.Write("+");
-            for (int i = 0; i < Proportion.Width - 2; i++) { Console.Write("-"); }
+            for (int i = 0; i < Proportion.Width - 2*BORDER; i++) { Console.Write("-"); }
             Console.Write("+");
 
-            for (int j = 0; j < Proportion.Height - 2; j++)
+            for (int j = 0; j < Proportion.Height - BORDER; j++)
             {
-                Console.SetCursorPosition(Proportion.TopLeft.X, Proportion.TopLeft.Y + j + 1);
+                Console.SetCursorPosition(Proportion.TopLeft.X, Proportion.TopLeft.Y + j + BORDER);
                 Console.Write("|");
-                for (int i = 0; i < Proportion.Width - 2; i++) { Console.Write(" "); }
+                for (int i = 0; i < Proportion.Width - 2*BORDER; i++) { Console.Write(" "); }
                 Console.Write("|");
             }
 
             Console.SetCursorPosition(Proportion.TopLeft.X, Proportion.TopLeft.Y + Proportion.Height - 1);
             Console.Write("+");
-            for (int i = 0; i < Proportion.Width - 2; i++) { Console.Write("-"); }
+            for (int i = 0; i < Proportion.Width - 2*BORDER; i++) { Console.Write("-"); }
             Console.Write("+");
         }
     }
