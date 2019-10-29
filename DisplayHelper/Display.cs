@@ -40,8 +40,16 @@ namespace DisplayHelper
             for (int y = 0; y < data.Length; y++)
             {
                 Console.SetCursorPosition(Proportion.TopLeft.X + (PADDING + BORDER), Proportion.TopLeft.Y + y + (PADDING + BORDER));
-                Console.Write(data[y]);
+                if (((LabelItem)data[y]).Value == null) Console.Write(addCenteredPadding(data[y].ToString())); //explicit typing issue
+                else Console.Write(data[y]);
             }
+        }
+
+        private string addCenteredPadding(string s)
+        {
+            if (s.Length >= Proportion.Width - 2 * (PADDING + BORDER)) { return s; }
+            int leftPadding = (Proportion.Width - 2 * (PADDING + BORDER) - s.Length) / 2;
+            return new string(' ', leftPadding) + s;
         }
 
         private void RepaintBorder()
