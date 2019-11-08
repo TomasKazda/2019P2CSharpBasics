@@ -6,7 +6,7 @@ namespace DisplayHelper
     public class Display
     {
         private UnlimitedArray _array;
-        const int PADDING = 1;
+        const int PADDING = 3;
         const int BORDER = 1;
         public Proportion Proportion { get; private set; }
 
@@ -36,12 +36,12 @@ namespace DisplayHelper
         {
             RepaintBorder();
 
-            object[] data = _array.GetAll();
-            for (int y = 0; y < data.Length; y++)
+           
+            for (int y = 0; y < _array.Length; y++)
             {
                 Console.SetCursorPosition(Proportion.TopLeft.X + (PADDING + BORDER), Proportion.TopLeft.Y + y + (PADDING + BORDER));
-                if (((LabelItem)data[y]).Value == null) Console.Write(addCenteredPadding(data[y].ToString())); //explicit typing issue
-                else Console.Write(data[y]);
+                if (((LabelItem)_array[y]).Value == null) Console.Write(addCenteredPadding(_array[y].ToString())); //explicit typing issue
+                else Console.Write(_array[y]);
             }
         }
 
