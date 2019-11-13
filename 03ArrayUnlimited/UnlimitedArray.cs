@@ -7,21 +7,39 @@ namespace ArrayUnlimited
     public class UnlimitedArray : IDynamicArray, IEnumerable
     {
         private object[] _array;
-        private const int GROW = 1;
+        private readonly int _grow;
 
-        public UnlimitedArray()
+        public UnlimitedArray(int grow = 10)
         {
-            _array = new object[GROW];
-        }
-
-        public UnlimitedArray(int initSize)
-        {
-            _array = new object[initSize];
+            _grow = grow;
+            _array = new object[_grow];
         }
 
         public static UnlimitedArray operator +(UnlimitedArray first, UnlimitedArray second)
         {
+            UnlimitedArray temp = new UnlimitedArray(first.Count + second.Count);
+            int i = 0;
+            foreach (var item in first)
+            {
+                temp.Insert(item, i++);
+            }
+            foreach (var item in second)
+            {
+                temp.Insert(item, i++);
+            }
+            return temp;
+        }
 
+        public static UnlimitedArray operator +(UnlimitedArray array, object item)
+        {
+            UnlimitedArray temp = new UnlimitedArray(array.Count + 1);
+            int i = 0;
+            foreach (var element in array)
+            {
+                temp.Insert(element, i++);
+            }
+            temp.Insert(item, i);
+            return temp;
         }
 
         public object this[int index]
@@ -114,7 +132,7 @@ namespace ArrayUnlimited
         {
             if (position < 0) throw new ArgumentOutOfRangeException("position", "Parametr musí být kladné číslo.");
 
-            if (position >= Length) ResizeArray(ref _array, position + GROW);
+            if (position >= Length) ResizeArray(ref _array, position + _grow);
 
             if (Get(position) != null) ShiftItems(position);
             _array[position] = value;
@@ -128,7 +146,7 @@ namespace ArrayUnlimited
             if (idx == -1)
             {
                 idx = Length;
-                ResizeArray(ref _array, Length + GROW);
+                ResizeArray(ref _array, Length + _grow);
             }
 
             for (int i = idx; i > indexFrom; i--)
@@ -159,6 +177,36 @@ namespace ArrayUnlimited
             if (position < 0 || position >= Length) return;
 
             _array[position] = null;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is IDynamicArray)) return base.Equals(obj);
+
+            var other = ((IDynamicArray)obj).GetAll();
+
+            int i = 0;
+            foreach (var item in this)
+            {
+                if (!item.Equals(other[i])) return false;
+            }
+
+            return true;
+        }
+
+        public override string ToString()
+        {
+            string result = "";
+            foreach (var item in this)
+            {
+                result += item.ToString() + "; ";
+            }
+            return result;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }
