@@ -6,11 +6,11 @@ namespace DisplayHelper
     public class Display
     {
         private UnlimitedArray _array;
-        const int PADDING = 3;
+        const int PADDING = 1;
         const int BORDER = 1;
         public Proportion Proportion { get; private set; }
 
-        public Display(int x = 0, int y = 0): this(new Proportion() { Height = 5, Width = 4, TopLeft = new System.Drawing.Point(x, y) }) { }
+        public Display(int x = 0, int y = 0, int width = 2 * (BORDER+PADDING), int height = 2 * (BORDER + PADDING)) : this(new Proportion() { Height = height, Width = width, X = x, Y = y }) { }
 
         public Display(Proportion proportion)
         {
@@ -37,9 +37,9 @@ namespace DisplayHelper
             RepaintBorder();
 
            
-            for (int y = 0; y < _array.Length; y++)
+            for (int y = 0; y < _array.Count; y++)
             {
-                Console.SetCursorPosition(Proportion.TopLeft.X + (PADDING + BORDER), Proportion.TopLeft.Y + y + (PADDING + BORDER));
+                Console.SetCursorPosition(Proportion.X + (PADDING + BORDER), Proportion.Y + y + (PADDING + BORDER));
                 if (((LabelItem)_array[y]).Value == null) Console.Write(addCenteredPadding(_array[y].ToString())); //explicit typing issue
                 else Console.Write(_array[y]);
             }
@@ -54,20 +54,20 @@ namespace DisplayHelper
 
         private void RepaintBorder()
         {
-            Console.SetCursorPosition(Proportion.TopLeft.X, Proportion.TopLeft.Y);
+            Console.SetCursorPosition(Proportion.X, Proportion.Y);
             Console.Write("+");
             for (int i = 0; i < Proportion.Width - 2*BORDER; i++) { Console.Write("-"); }
             Console.Write("+");
 
             for (int j = 0; j < Proportion.Height - BORDER; j++)
             {
-                Console.SetCursorPosition(Proportion.TopLeft.X, Proportion.TopLeft.Y + j + BORDER);
+                Console.SetCursorPosition(Proportion.X, Proportion.Y + j + BORDER);
                 Console.Write("|");
                 for (int i = 0; i < Proportion.Width - 2*BORDER; i++) { Console.Write(" "); }
                 Console.Write("|");
             }
 
-            Console.SetCursorPosition(Proportion.TopLeft.X, Proportion.TopLeft.Y + Proportion.Height - 1);
+            Console.SetCursorPosition(Proportion.X, Proportion.Y + Proportion.Height - 1);
             Console.Write("+");
             for (int i = 0; i < Proportion.Width - 2*BORDER; i++) { Console.Write("-"); }
             Console.Write("+");

@@ -10,16 +10,16 @@ namespace Grading
         {
             CertificateTable table = new CertificateTable();
 
-            Display displayGrading = new Display(new Proportion() { Width = 40, TopLeft = new System.Drawing.Point(20, 3) });
+            Display displayGrading = new Display(20, 3, 40);
             displayGrading.AddItem(new LabelItem("-- Vysvědčení --"));
             displayGrading.AddItem(new LabelItem(""));
-            Display displayInput = new Display(new Proportion() { Width = 30, TopLeft = new System.Drawing.Point(3, 3) });
+            Display displayInput = new Display(3, 3, 30);
             displayInput.AddItem(new LabelItem("---- zadávání předmětu ----"));
             displayInput.AddItem(new LabelItem("Předmět", ""));
-            Display displayInput2 = new Display(new Proportion() { Width = 30, TopLeft = new System.Drawing.Point(38, 3) });
+            Display displayInput2 = new Display(38, 3, 30);
             displayInput2.AddItem(new LabelItem("---- zadávání známky ----"));
             displayInput2.AddItem(new LabelItem("Známka", ""));
-            Display displayConfirm = new Display(new Proportion() { Width = 30, TopLeft = new System.Drawing.Point(25, 12) });
+            Display displayConfirm = new Display(25, 12, 30);
             displayConfirm.AddItem(new LabelItem("Chceš vložit dalšího? [A]", ""));
 
             Grade[] grades = new Grade[9];
@@ -36,12 +36,12 @@ namespace Grading
             ConsoleKeyInfo result;
             do
             {
-                int grade;
+                double grade;
                 string temp;
                 displayInput.Refresh();
                 temp = Console.ReadLine();
                 displayInput2.Refresh();
-                int.TryParse(Console.ReadLine(), out grade);
+                double.TryParse(Console.ReadLine(), out grade);
                 if (temp.Length == 3 && grade < 6 && grade > 0) table.AddGrade(new Grade() { Score = grade, Subject = temp });
 
                 displayConfirm.Refresh();
