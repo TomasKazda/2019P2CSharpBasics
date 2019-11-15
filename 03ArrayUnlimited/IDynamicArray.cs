@@ -1,12 +1,12 @@
 ﻿namespace ArrayUnlimited
 {
-    public interface IDynamicArray
+    public interface IDynamicArray<T>
     {
-        object Get(int position);
-        object[] GetAll();
-        void Add(object value);
-        void Insert(object value, int position);
-        bool Delete(object value);
+        T Get(int position);
+        T[] GetAll();
+        void Add(T value);
+        void Insert(T value, int position);
+        bool Delete(T value);
         void Delete(int position);
         void ShiftItems(int indexFrom);
         int Count { get; }

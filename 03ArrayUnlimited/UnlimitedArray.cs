@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 
 namespace ArrayUnlimited
 {
-    public class UnlimitedArray : IDynamicArray, IEnumerable
+    public class UnlimitedArray<T> : IDynamicArray<T>, IEnumerable<T> where T : class
     {
-        private object[] _array;
+        private T[] _array;
         private readonly int _grow;
 
         public UnlimitedArray(int grow = 10)
         {
             _grow = grow;
-            _array = new object[_grow];
+            _array = new T[_grow];
         }
 
-        public static UnlimitedArray operator +(UnlimitedArray first, UnlimitedArray second)
+        public static UnlimitedArray<T> operator +(UnlimitedArray<T> first, UnlimitedArray<T> second)
         {
-            UnlimitedArray temp = new UnlimitedArray(first.Count + second.Count);
+            UnlimitedArray<T> temp = new UnlimitedArray<T>(first.Count + second.Count);
             int i = 0;
             foreach (var item in first)
             {
@@ -30,9 +31,9 @@ namespace ArrayUnlimited
             return temp;
         }
 
-        public static UnlimitedArray operator +(UnlimitedArray array, object item)
+        public static UnlimitedArray<T> operator +(UnlimitedArray<T> array, T item)
         {
-            UnlimitedArray temp = new UnlimitedArray(array.Count + 1);
+            UnlimitedArray<T> temp = new UnlimitedArray<T>(array.Count + 1);
             int i = 0;
             foreach (var element in array)
             {
@@ -42,7 +43,7 @@ namespace ArrayUnlimited
             return temp;
         }
 
-        public object this[int index]
+        public T this[int index]
         {
             get
             {
@@ -75,11 +76,11 @@ namespace ArrayUnlimited
         /// </summary>
         /// <param name="oldArray">pole, které bude zvětšeno nebo zmenšeno</param>
         /// <param name="newSize">velikost pole po zvětšení / zmenšení</param>
-        private static void ResizeArray(ref object[] oldArray, int newSize)
+        private static void ResizeArray(ref T[] oldArray, int newSize)
         {
             if (newSize <= 0) throw new ArgumentOutOfRangeException("newSize", "Parametr musí být kladné číslo.");
 
-            object[] newArr = new object[newSize];
+            T[] newArr = new T[newSize];
             for (int i = 0; i < Math.Min(oldArray.Length, newArr.Length); i++)
             {
                 newArr[i] = oldArray[i];
@@ -87,7 +88,7 @@ namespace ArrayUnlimited
             oldArray = newArr;
         }
 
-        private static int GetFirstIndexOfNull(object[] array, int fromIndex = 0)
+        private static int GetFirstIndexOfNull(T[] array, int fromIndex = 0)
         {
             for (int i = fromIndex; i < array.Length; i++)
             {
@@ -96,15 +97,15 @@ namespace ArrayUnlimited
             return -1;
         }
 
-        public object Get(int position)
+        public T Get(int position)
         {
             //if (position < 0 || position >= Length) return null; efficiency issue
             return _array[position];
         }
 
-        public object[] GetAll()
+        public T[] GetAll()
         {
-            object[] result = new object[Count];
+            T[] result = new T[Count];
             int i = 0;
             foreach (var item in this)
             {
@@ -112,8 +113,12 @@ namespace ArrayUnlimited
             }
             return result;
         }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
 
-        public IEnumerator GetEnumerator()
+        public IEnumerator<T> GetEnumerator()
         {
             foreach (var item in _array)
             {
@@ -121,14 +126,14 @@ namespace ArrayUnlimited
             }
         }
 
-        public void Add(object value)
+        public void Add(T value)
         {
             int insertPosition = GetFirstIndexOfNull(_array);
             if (insertPosition == -1) insertPosition = Length;
             Insert(value, insertPosition);
         }
 
-        public void Insert(object value, int position)
+        public void Insert(T value, int position)
         {
             if (position < 0) throw new ArgumentOutOfRangeException("position", "Parametr musí být kladné číslo.");
 
@@ -156,7 +161,7 @@ namespace ArrayUnlimited
             _array[indexFrom] = null;
         }
 
-        public bool Delete(object value)
+        public bool Delete(T value)
         {
             bool result = false;
 
@@ -179,20 +184,20 @@ namespace ArrayUnlimited
             _array[position] = null;
         }
 
-        public override bool Equals(object obj)
-        {
-            if (!(obj is IDynamicArray)) return base.Equals(obj);
+        //public override bool Equals(object obj)
+        //{
+        //    if (!(obj is T)) return base.Equals(obj);
 
-            var other = ((IDynamicArray)obj).GetAll();
+        //    var other = obj.GetAll();
 
-            int i = 0;
-            foreach (var item in this)
-            {
-                if (!item.Equals(other[i])) return false;
-            }
+        //    int i = 0;
+        //    foreach (var item in this)
+        //    {
+        //        if (!item.Equals(other[i])) return false;
+        //    }
 
-            return true;
-        }
+        //    return true;
+        //}
 
         public override string ToString()
         {
