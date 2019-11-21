@@ -17,6 +17,5 @@ namespace RoboFactory.Model
 
         public ToolType AttachedToolType { get; protected set; } = ToolType.Custom;
         public override string StatusMessage => "Robotic Arm Mk1";
-        public override double DeviceConsumption { get; protected set; }
     }
 }

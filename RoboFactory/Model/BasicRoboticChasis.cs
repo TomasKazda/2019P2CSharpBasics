@@ -5,7 +5,7 @@ using RoboFactory.Interface;
 
 namespace RoboFactory.Model
 {
-    public class BasicRoboticChasis : RoboPart, IEnergyUnit, IToolController
+    public class BasicRoboticChasis : RoboPart, IEnergyUnit, IToolController, IExecutionUnit
     {
         public BasicRoboticChasis(string name = "Generic Chasis") : this(name, 20000, 200) { }
         public BasicRoboticChasis(string name, double battery, double consumption)
@@ -17,8 +17,7 @@ namespace RoboFactory.Model
         }
         public string Name { get; }
         protected RoboArm Arm { get; set; }
-        public override double DeviceConsumption { get; protected set; }
-        public override double Consumption => base.Consumption + Arm?.DeviceConsumption ?? 0;
+        public override double Consumption => base.Consumption + (Arm?.DeviceConsumption ?? 0);
 
         public double RemainingBatteryCapacity { get; private set; }
         public double MaxBatteryCapacity { get; private set; }
@@ -57,11 +56,18 @@ namespace RoboFactory.Model
             return result;
         }
 
+        public double Work(int hours)
+        {
+            if (Consumption * hours > RemainingBatteryCapacity) throw new BatteryExhaustedException("There is not enough power to complete this task.");
+            RemainingBatteryCapacity -= Consumption * hours;
+            return GetHoursRemaining();
+        }
+
         public override string StatusMessage
         {
             get
             {
-                return String.Format("Chasis {0} with {1} installed. Remaining battery capacity is {2}, which is enough for {3} hours of operation.",
+                return String.Format("Chasis {0} with {1} installed.\r\nRemaining battery capacity is {2}, which is enough for {3} hours of operation.",
                     Name,
                     Arm == null ? "nothing" : Arm.StatusMessage,
                     RemainingBatteryCapacity,

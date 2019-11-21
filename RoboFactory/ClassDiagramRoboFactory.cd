@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="RoboFactory.Model.RoboPart">
-    <Position X="2.75" Y="2.5" Width="1.5" />
+    <Position X="3.25" Y="2.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAEAAA=</HashCode>
       <FileName>Model\RoboPart.cs</FileName>
@@ -9,25 +9,25 @@
     <Lollipop Orientation="Right" Position="0.112" />
   </Class>
   <Class Name="RoboFactory.Model.RoboArm">
-    <Position X="4" Y="4.75" Width="1.5" />
+    <Position X="4.5" Y="4.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAIAEAgA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAIAAAgA=</HashCode>
       <FileName>Model\RoboArm.cs</FileName>
     </TypeIdentifier>
     <Lollipop Orientation="Right" Position="0.112" />
   </Class>
   <Class Name="RoboFactory.Model.DrillTool">
-    <Position X="7" Y="4.75" Width="1.5" />
+    <Position X="7.75" Y="4.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgIAAAAIIIAAAAAAAAAgAAgAAAIAEAAA=</HashCode>
+      <HashCode>AAAAAAgAAAAAgIAAAAIIIAAAAAAAAAgAAgAAAIAAAAA=</HashCode>
       <FileName>Model\DrillTool.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Orientation="Right" Position="0.133" />
+    <Lollipop Orientation="Right" Position="0.14" />
   </Class>
   <Class Name="RoboFactory.Model.BasicRoboticChasis">
-    <Position X="1.5" Y="4.75" Width="1.75" />
+    <Position X="1.5" Y="4.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgAAQAAAAAAAAAAAAQABAAAAIQAAAAAAIAcAAA=</HashCode>
+      <HashCode>AAgAAAgAAQAAAAAAAAAAAAQABAAAAIQAAAAAAIAYAAA=</HashCode>
       <FileName>Model\BasicRoboticChasis.cs</FileName>
     </TypeIdentifier>
     <Lollipop Orientation="Left" Position="0.1" />
@@ -81,8 +81,15 @@
       <FileName>Interface\IRoboTools.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Enum Name="RoboFactory.Interface.ToolType">
+  <Interface Name="RoboFactory.Interface.IExecutionUnit">
     <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\IExecutionUnit.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="RoboFactory.Interface.ToolType">
+    <Position X="0.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQQAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
       <FileName>Interface\ToolType.cs</FileName>

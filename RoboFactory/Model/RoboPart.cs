@@ -8,6 +8,6 @@ namespace RoboFactory.Model
 
         public virtual double Consumption => DeviceConsumption;
 
-        public abstract double DeviceConsumption { get; protected set; }
+        public double DeviceConsumption { get; protected set; }
     }
 }

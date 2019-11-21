@@ -22,7 +22,7 @@ namespace RoboFactory.Model
         public int SetSize(int size) { Size = (size < MaxSize) ? size : MaxSize; return Size; }
         public int SetRotations(int rotations) { Rotations = (rotations < MaxRotations) ? rotations : MaxRotations; return Rotations; }
 
-        public override double DeviceConsumption => base.DeviceConsumption + Rotations * Size * DrillCovGalacticConstant;
+        public override double Consumption => base.Consumption + Rotations * Size * DrillCovGalacticConstant;
         public override string StatusMessage => $"Drill set up to {Size} mm and {Rotations} RPM";
     }
 }
